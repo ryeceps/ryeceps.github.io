@@ -9,7 +9,9 @@
     "validate:html": "html-validate \"*.html\" \"blog/*.html\"",
     "validate:local": "node scripts/check-local-responses.mjs",
     "validate:site": "node scripts/validate-site.mjs",
-    "test:archive": "node scripts/test-projects.mjs"
+    "test:archive": "node scripts/test-projects.mjs",
+    "sync:repos": "node scripts/sync-repositories.mjs",
+    "sync:repos:check": "node scripts/sync-repositories.mjs --check"
   },
   "devDependencies": {
     "html-validate": "10.9.0",

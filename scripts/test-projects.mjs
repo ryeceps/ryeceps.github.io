@@ -7,6 +7,8 @@ import { JSDOM } from "jsdom";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const html = await readFile(path.join(root, "projects.html"), "utf8");
 const script = await readFile(path.join(root, "projects.js"), "utf8");
+const snapshot = JSON.parse(await readFile(path.join(root, "data/public-repositories.json"), "utf8"));
+const total = snapshot.repositories.length + 25;
 const dom = new JSDOM(html, {
     runScripts: "outside-only",
     url: "https://example.test/projects.html"
@@ -16,6 +18,7 @@ dom.window.eval(script);
 
 const document = dom.window.document;
 const search = document.querySelector("[data-archive-search]");
+const category = document.querySelector("[data-archive-category]");
 const clear = document.querySelector("[data-clear]");
 const resultCount = document.querySelector("[data-result-count]");
 const emptyState = document.querySelector("[data-empty-state]");
@@ -27,21 +30,19 @@ const representedCount = () => visibleItems().reduce(
     0
 );
 
-assert.equal(items.length, 34, "The enhanced archive should have 33 public cards and one private vault card.");
-assert.equal(visibleItems().length, 34, "Every card should be visible initially.");
-assert.equal(representedCount(), 58, "Initial represented-project count should be 58.");
-assert.equal(resultCount.textContent, "58 represented repositories");
+assert.equal(items.length, snapshot.repositories.length + 1, "The archive should have every public card and one private vault card.");
+assert.equal(visibleItems().length, items.length, "Every card should be visible initially.");
+assert.equal(representedCount(), total);
+assert.equal(resultCount.textContent, `${total} represented repositories`);
 assert.equal(emptyState.hidden, true);
 
 search.value = "typescript";
 search.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
-assert.equal(visibleItems().length, 3, "TypeScript search should match three public cards.");
-assert.equal(representedCount(), 3);
-assert.equal(resultCount.textContent, "3 represented repositories");
+assert.equal(visibleItems().length, snapshot.repositories.filter((repo) => repo.language.toLowerCase().includes("typescript") || repo.description.toLowerCase().includes("typescript") || repo.name.toLowerCase().includes("typescript")).length);
 
 clear.click();
-assert.equal(visibleItems().length, 34, "Clear should restore the complete archive.");
-assert.equal(representedCount(), 58);
+assert.equal(visibleItems().length, items.length, "Clear should restore the complete archive.");
+assert.equal(representedCount(), total);
 assert.equal(document.activeElement, search, "Clear should return keyboard focus to search.");
 assert.equal(document.querySelector('input[name="visibility"][value="all"]').checked, true);
 
@@ -65,7 +66,13 @@ assert.equal(resultCount.textContent, "0 represented repositories");
 assert.equal(emptyState.hidden, false, "Empty state should be shown when nothing matches.");
 
 clear.click();
-assert.equal(visibleItems().length, 34);
+assert.equal(visibleItems().length, items.length);
 assert.equal(emptyState.hidden, true);
+
+category.value = "games";
+category.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+assert.equal(visibleItems().length, snapshot.repositories.filter((repo) => repo.category === "games").length, "Category filter should show only matching public repositories.");
+clear.click();
+assert.equal(visibleItems().length, items.length);
 
 console.log("Archive control tests passed.");

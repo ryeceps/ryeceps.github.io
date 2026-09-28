@@ -12,6 +12,9 @@ ryeceps.github.io/
 ├── resume.html
 ├── projects.html
 ├── projects.js
+├── data/
+│   ├── public-repositories.json
+│   └── repository-curation.json
 ├── blog.html
 ├── blog/
 │   └── prophet-rust-rewrite.html
@@ -19,8 +22,11 @@ ryeceps.github.io/
 ├── vendor/
 │   └── psone/
 ├── scripts/
+│   ├── sync-repositories.mjs
 │   ├── test-projects.mjs
 │   └── validate-site.mjs
+├── .github/workflows/sync-portfolio.yml
+├── AGENTS.md
 ├── package.json
 └── README.md
 ```
@@ -38,70 +44,25 @@ The site is static HTML, CSS, and JavaScript. The Projects archive is fully pres
 
 PSone.css is copyright its contributors and distributed under the [MIT license](vendor/psone/LICENSE).
 
-## Repository archive rules
+## Repository archive and sync
 
-The archive is a manual July 2026 snapshot representing 58 repositories:
+The public archive is generated from the GitHub API. It includes owned, public, non-empty, non-fork repositories except the profile and website repositories. `data/public-repositories.json` is the committed public snapshot; `data/repository-curation.json` keeps reviewed categories, descriptions, and live-site URLs. New repositories appear automatically with an inferred category until reviewed.
 
-- 33 public repository cards.
-- One anonymous `PRIVATE VAULT // 25 REPOSITORIES` panel representing 25 private repositories.
+Run `npm run sync:repos` to refresh the static archive and the homepage's four recently pushed public repositories. Run `npm run sync:repos:check` to detect drift. The site makes no runtime GitHub API calls. Descriptions and other API text are escaped before insertion into HTML.
 
-A public repository qualifies when it is owned by `ryeceps`, non-empty, and not a fork. The profile repository and this website repository are excluded. Public cards are sorted by `pushed_at`, most recent first.
+The anonymous Private Vault panel represents 25 private repositories from the July 2026 audit. The public sync does not access private repository metadata or update that historical count. Never commit private repository names, URLs, languages, or dates. Cigarstradamus remains an intentional public-facing featured project with no private repository link.
 
-Descriptions follow this order:
+`.github/workflows/sync-portfolio.yml` runs daily and through `workflow_dispatch`. When public metadata changes, it runs validation, commits the generated files, and requests a Pages build. Review new descriptions and categories in the curation file when practical.
 
-1. Use the GitHub repository description when present.
-2. Otherwise derive one sentence of at most 160 characters from public README or source material.
-3. Use `Public coding experiment` only if the public material does not establish a clear purpose.
-
-Each public card contains only its name, concise description, primary-language label, GitHub link, and an optional project-specific live-site link. Stars, forks, issue counts, and activity statistics are intentionally omitted.
-
-Private repository contents are never inspected. Qualifying private repositories must be owned by `ryeceps`, non-empty, and not externally owned collaborations. The site exposes no private repository names, URLs, languages, dates, or per-category counts. It uses only four broad, metadata-level summaries:
-
-- Applied ML and forecasting.
-- Automation and productivity tools.
-- Consumer applications.
-- Data and deployment infrastructure.
-
-Cigarstradamus is an intentional exception only as an already public-facing featured project name and summary. Its expired live URL and private repository name/URL are not linked or added to the archive.
-
-No GitHub API or token is used at runtime.
-
-## Recent public activity
-
-The homepage includes a static, public-only snapshot of eight recent commits. This shows ongoing work without making visitors' browsers call GitHub or exposing a token.
-
-Activity entries must:
-
-- Come from an owned, public, non-empty, non-fork repository.
-- Exclude the profile and website repositories.
-- Use commits from the repository's default branch.
-- Have GitHub's commit `author.login` set to `ryeceps`.
-- Exclude merge commits, bots, deployment triggers, Pages synchronization, and low-signal maintenance.
-- Be sorted by committed timestamp descending, with no more than three entries per repository.
-- Include the repository, first-line subject, absolute `<time datetime>`, seven-character display SHA, and canonical full-SHA commit URL.
-
-Refresh the snapshot monthly or after a meaningful public release. Update the eight `data-activity-item` entries and the visible snapshot date in `index.html`, then run the full validation suite. Commit messages are untrusted input and must be HTML-escaped before being added.
-
-## Maintaining the archive
-
-1. Collect repository metadata outside the site runtime.
-2. Apply the rules above and verify the totals.
-3. Sort qualifying public repositories by `pushed_at` descending.
-4. Update the static cards in `projects.html`. Keep `data-visibility="public"` and `data-count="1"` on each public entry.
-5. Update the private vault's represented total in its title and `data-count` only. Do not add private names or metadata to committed files.
-6. Update the archive intro, initial `aria-live` count, footer count, expected names in `scripts/validate-site.mjs`, and archive tests when totals change.
-7. Run the complete validation suite.
+## Private leakage audit
 
 For the private leakage audit, create a temporary file outside the repository containing one excluded private repository name or URL per line. Then run:
 
 ```bash
-PRIVATE_REPO_EXCLUSIONS_FILE=/absolute/path/private-repositories.txt \
-STRICT_PRIVACY=1 \
-npm test
+PRIVATE_REPO_EXCLUSIONS_FILE=/absolute/path/private-repositories.txt STRICT_PRIVACY=1 npm test
 ```
 
 The validator scans generated `.html`, `.css`, and `.js` files. Keep the exclusion file private and never commit it. The approved public-facing Cigarstradamus display name is permitted, but its GitHub URL is still rejected.
-
 ## Local development and validation
 
 Install the pinned validation-only dependencies:
@@ -146,7 +107,7 @@ In GitHub, the expected Pages configuration is:
 - **Branch:** `main`.
 - **Folder:** `/ (root)`.
 
-A push to `main` starts the Pages build. Monitor the repository's Pages deployment until it succeeds, then smoke-test:
+A normal push to `main` starts the Pages build. The scheduled workflow explicitly requests a Pages build after its automated commit. Monitor the Pages deployment until it succeeds, then smoke-test:
 
 - `/`
 - `/resume.html`

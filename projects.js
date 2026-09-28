@@ -1,12 +1,13 @@
 (() => {
     const controls = document.querySelector("[data-archive-controls]");
     const search = document.querySelector("[data-archive-search]");
+    const category = document.querySelector("[data-archive-category]");
     const clearButton = document.querySelector("[data-clear]");
     const resultCount = document.querySelector("[data-result-count]");
     const emptyState = document.querySelector("[data-empty-state]");
     const items = Array.from(document.querySelectorAll("[data-archive-item]"));
 
-    if (!controls || !search || !clearButton || !resultCount || !emptyState || items.length === 0) {
+    if (!controls || !search || !category || !clearButton || !resultCount || !emptyState || items.length === 0) {
         return;
     }
 
@@ -15,13 +16,15 @@
     const updateArchive = () => {
         const query = normalize(search.value);
         const selectedFilter = controls.querySelector('input[name="visibility"]:checked')?.value ?? "all";
+        const selectedCategory = category.value;
         let representedCount = 0;
         let visibleEntries = 0;
 
         items.forEach((item) => {
             const matchesText = query === "" || normalize(item.textContent ?? "").includes(query);
             const matchesVisibility = selectedFilter === "all" || item.dataset.visibility === selectedFilter;
-            const isVisible = matchesText && matchesVisibility;
+            const matchesCategory = selectedCategory === "all" || item.dataset.category === selectedCategory;
+            const isVisible = matchesText && matchesVisibility && matchesCategory;
 
             item.hidden = !isVisible;
 
@@ -44,7 +47,7 @@
     search.addEventListener("input", updateArchive);
 
     controls.addEventListener("change", (event) => {
-        if (event.target instanceof HTMLInputElement && event.target.name === "visibility") {
+        if ((event.target instanceof HTMLInputElement && event.target.name === "visibility") || event.target === category) {
             updateArchive();
         }
     });
