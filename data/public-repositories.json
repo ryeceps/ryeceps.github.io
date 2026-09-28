@@ -1,0 +1,293 @@
+{
+  "owner": "ryeceps",
+  "repositories": [
+    {
+      "name": "azeroth-chronicle",
+      "description": "the history of warcraft in an interactive format",
+      "language": "TypeScript",
+      "category": "games",
+      "pushedAt": "2026-09-26T02:19:04Z",
+      "liveUrl": null
+    },
+    {
+      "name": "benchmark-real-ai",
+      "description": "Same task, different models and harnesses. Inspect the work.",
+      "language": "HTML",
+      "category": "ai",
+      "pushedAt": "2026-09-17T01:23:23Z",
+      "liveUrl": null
+    },
+    {
+      "name": "ocarina-of-trump",
+      "description": "Ocarina of Time Trump parody assets and Fast64 tooling",
+      "language": "Python",
+      "category": "games",
+      "pushedAt": "2026-09-12T01:12:17Z",
+      "liveUrl": null
+    },
+    {
+      "name": "azeroth-soulforge",
+      "description": "Start fresh on your own server with your own friends whenever you want.",
+      "language": "Python",
+      "category": "games",
+      "pushedAt": "2026-09-04T01:03:36Z",
+      "liveUrl": null
+    },
+    {
+      "name": "time-vs-timing",
+      "description": "Compare lump-sum investing and DCA across real SPY history.",
+      "language": "TypeScript",
+      "category": "data",
+      "pushedAt": "2026-07-23T23:14:48Z",
+      "liveUrl": "https://ryeceps.github.io/time-vs-timing/"
+    },
+    {
+      "name": "libraryofbabel",
+      "description": "An interactive homage to Jorge Luis Borges's The Library of Babel.",
+      "language": "TypeScript",
+      "category": "games",
+      "pushedAt": "2026-07-18T17:00:22Z",
+      "liveUrl": "https://ryeceps.github.io/libraryofbabel/"
+    },
+    {
+      "name": "strength-coach",
+      "description": "A skill and web interface for turning strength goals, timelines, and equipment into practical coaching recommendations.",
+      "language": "JavaScript",
+      "category": "apps",
+      "pushedAt": "2026-07-10T03:09:56Z",
+      "liveUrl": "https://ryeceps.github.io/strength-coach/"
+    },
+    {
+      "name": "registry-platform",
+      "description": "H3 map of registered offenders",
+      "language": "Python",
+      "category": "data",
+      "pushedAt": "2026-07-07T03:16:48Z",
+      "liveUrl": "https://ryeceps.github.io/registry-platform/"
+    },
+    {
+      "name": "traffic-review",
+      "description": "ATE is a scam",
+      "language": "JavaScript",
+      "category": "apps",
+      "pushedAt": "2026-07-05T02:53:06Z",
+      "liveUrl": "https://ryeceps.github.io/traffic-review/"
+    },
+    {
+      "name": "just-a-simple-chart-bro",
+      "description": "Simple comparison for when local llms breakeven for cloud",
+      "language": "TypeScript",
+      "category": "data",
+      "pushedAt": "2026-07-04T00:59:06Z",
+      "liveUrl": "https://ryeceps.github.io/just-a-simple-chart-bro/"
+    },
+    {
+      "name": "omnissiah",
+      "description": "Home maintenance tracking app with FastAPI, React, PostgreSQL, multi-agent support, and Telegram notifications.",
+      "language": "Python",
+      "category": "apps",
+      "pushedAt": "2026-04-13T00:57:46Z",
+      "liveUrl": null
+    },
+    {
+      "name": "farseer",
+      "description": "Time-series forecasting in Rust based on prophet",
+      "language": "Python",
+      "category": "data",
+      "pushedAt": "2025-11-01T04:08:36Z",
+      "liveUrl": "https://ryeceps.github.io/farseer/"
+    },
+    {
+      "name": "pokemon_portfoilo",
+      "description": "AI-assisted Pokémon card collection manager with card recognition, market pricing, and portfolio tracking.",
+      "language": "Python",
+      "category": "ai",
+      "pushedAt": "2025-07-19T04:49:25Z",
+      "liveUrl": null
+    },
+    {
+      "name": "geostradamus",
+      "description": "Geospatial Time Series",
+      "language": "Python",
+      "category": "data",
+      "pushedAt": "2025-05-15T05:01:06Z",
+      "liveUrl": null
+    },
+    {
+      "name": "spatial_mapping",
+      "description": "Explores nearest-neighbor weighting to interpolate low-resolution spatial data.",
+      "language": "Jupyter Notebook",
+      "category": "data",
+      "pushedAt": "2025-05-04T04:31:35Z",
+      "liveUrl": null
+    },
+    {
+      "name": "smart_shopper",
+      "description": "Scrapes local businesses to surface the best coffee deals.",
+      "language": "Jupyter Notebook",
+      "category": "apps",
+      "pushedAt": "2025-05-04T02:26:18Z",
+      "liveUrl": null
+    },
+    {
+      "name": "butlerbot",
+      "description": "Telegram bot that stores notes and appointments, adds context, and prepares a daily report.",
+      "language": "Jupyter Notebook",
+      "category": "apps",
+      "pushedAt": "2025-05-04T02:23:04Z",
+      "liveUrl": null
+    },
+    {
+      "name": "aoc-2024",
+      "description": "aoc 2024 code",
+      "language": "Jupyter Notebook",
+      "category": "research",
+      "pushedAt": "2024-12-03T05:51:29Z",
+      "liveUrl": null
+    },
+    {
+      "name": "ai_researcher",
+      "description": "multi-agent researcher to do multimodal research on companies",
+      "language": "Unspecified",
+      "category": "ai",
+      "pushedAt": "2024-08-04T03:25:35Z",
+      "liveUrl": null
+    },
+    {
+      "name": "what_the_bill",
+      "description": "I dont have time to read the bills the house passes, lets have an AI do it.",
+      "language": "Unspecified",
+      "category": "ai",
+      "pushedAt": "2024-04-23T02:43:19Z",
+      "liveUrl": null
+    },
+    {
+      "name": "rocket_sim",
+      "description": "Interactive rocket simulation served as a lightweight local web app.",
+      "language": "Python",
+      "category": "games",
+      "pushedAt": "2024-04-16T14:30:13Z",
+      "liveUrl": null
+    },
+    {
+      "name": "plex_media_server",
+      "description": "Plex Server",
+      "language": "Makefile",
+      "category": "infrastructure",
+      "pushedAt": "2024-01-07T05:51:43Z",
+      "liveUrl": null
+    },
+    {
+      "name": "home_automation",
+      "description": "One repo to rule all of them home things",
+      "language": "Unspecified",
+      "category": "infrastructure",
+      "pushedAt": "2023-12-20T04:49:31Z",
+      "liveUrl": null
+    },
+    {
+      "name": "autobsts",
+      "description": "Repo for the autobsts package",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2021-02-26T13:53:04Z",
+      "liveUrl": null
+    },
+    {
+      "name": "model-deployment-kubernetes",
+      "description": "Repo contains a working example of container orchestration in kubernetes to utilize seperate containers for pulling data, modelling data, and pushing data out.",
+      "language": "R",
+      "category": "infrastructure",
+      "pushedAt": "2021-02-01T13:38:07Z",
+      "liveUrl": null
+    },
+    {
+      "name": "SIR-model",
+      "description": "System of ODE's for epidemic modelling put into a R-shiny Dashboard",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2021-01-30T22:02:20Z",
+      "liveUrl": null
+    },
+    {
+      "name": "chicago-crime-predicitons",
+      "description": "Explores Chicago crime arrest prediction with caret and SparklyR workflows.",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2021-01-25T14:51:16Z",
+      "liveUrl": null
+    },
+    {
+      "name": "Example-Docker-Repo",
+      "description": "Template Repo for R projects using docker",
+      "language": "Dockerfile",
+      "category": "infrastructure",
+      "pushedAt": "2020-10-11T17:56:01Z",
+      "liveUrl": null
+    },
+    {
+      "name": "Time-Series-Catch-All",
+      "description": "Time Series Package in R to automate forecasting",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2020-10-09T00:21:09Z",
+      "liveUrl": null
+    },
+    {
+      "name": "Weightlifting",
+      "description": "Explores logistic models for predicting weightlifting medal outcomes from weight class and country.",
+      "language": "R",
+      "category": "research",
+      "pushedAt": "2020-04-06T01:55:33Z",
+      "liveUrl": null
+    },
+    {
+      "name": "Death-Penalty",
+      "description": "Looking at the death Penalty",
+      "language": "Unspecified",
+      "category": "research",
+      "pushedAt": "2020-04-04T22:16:33Z",
+      "liveUrl": null
+    },
+    {
+      "name": "BMR",
+      "description": "shiny app to look at bmr and how long it takes for people to lose weight",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2020-03-10T22:58:02Z",
+      "liveUrl": null
+    },
+    {
+      "name": "deploying-plumber-ibm-cloud",
+      "description": "Showing you how to deploy a plumber api on kubernetes in ibm cloud",
+      "language": "Dockerfile",
+      "category": "infrastructure",
+      "pushedAt": "2020-02-01T22:01:38Z",
+      "liveUrl": null
+    },
+    {
+      "name": "NLP",
+      "description": "Messing around with Text Analytics in Twitter",
+      "language": "R",
+      "category": "research",
+      "pushedAt": "2019-12-12T13:47:09Z",
+      "liveUrl": null
+    },
+    {
+      "name": "FazolisIsGod",
+      "description": "Find your distance relative to Fazoils",
+      "language": "R",
+      "category": "apps",
+      "pushedAt": "2019-11-10T15:05:50Z",
+      "liveUrl": "https://ryanbieber.shinyapps.io/Distance_to_Fazolis/"
+    },
+    {
+      "name": "Wow-Gold",
+      "description": "R project on looking at world of warcraft gold prices",
+      "language": "R",
+      "category": "data",
+      "pushedAt": "2019-09-26T19:26:49Z",
+      "liveUrl": null
+    }
+  ]
+}

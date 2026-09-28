@@ -5,41 +5,8 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
 
-const expectedPublicRepositories = [
-    "time-vs-timing",
-    "libraryofbabel",
-    "strength-coach",
-    "registry-platform",
-    "traffic-review",
-    "just-a-simple-chart-bro",
-    "omnissiah",
-    "farseer",
-    "pokemon_portfoilo",
-    "geostradamus",
-    "spatial_mapping",
-    "smart_shopper",
-    "butlerbot",
-    "aoc-2024",
-    "ai_researcher",
-    "what_the_bill",
-    "rocket_sim",
-    "plex_media_server",
-    "home_automation",
-    "autobsts",
-    "model-deployment-kubernetes",
-    "SIR-model",
-    "chicago-crime-predicitons",
-    "Example-Docker-Repo",
-    "Wow-Gold-Token-Machine",
-    "Time-Series-Catch-All",
-    "Weightlifting",
-    "Death-Penalty",
-    "BMR",
-    "deploying-plumber-ibm-cloud",
-    "NLP",
-    "FazolisIsGod",
-    "Wow-Gold"
-];
+const snapshot = JSON.parse(await readFile(path.join(root, "data/public-repositories.json"), "utf8"));
+const expectedPublicRepositories = snapshot.repositories.map((repo) => repo.name);
 
 const excludedPublicRepositories = [
     "headless-codex",
@@ -52,16 +19,6 @@ const excludedPublicRepositories = [
     "ryeceps.github.io"
 ];
 
-const expectedRecentActivity = [
-    ["time-vs-timing", "8806622078412c26a810f021e47eaf16759824d1", "2026-07-23T23:14:48Z"],
-    ["time-vs-timing", "286455e83e85aa2539e49621cda09d78670978e4", "2026-07-23T20:51:29Z"],
-    ["libraryofbabel", "def73c0dc50532ec0a2c26463394f2d3502c823e", "2026-07-18T17:00:20Z"],
-    ["libraryofbabel", "5b130aa36f88a17caa67c5de91af04166301fff4", "2026-07-18T03:37:51Z"],
-    ["libraryofbabel", "d0acc97e8ab4bec942e9db1ba6557f311b4ceec6", "2026-07-17T19:24:14Z"],
-    ["just-a-simple-chart-bro", "3a43a15a9241a9582a437fe3cf72dd4f8fe63fe1", "2026-07-04T00:17:25Z"],
-    ["traffic-review", "68a29eec732ea86bf8790f976344ad013755486b", "2026-07-01T02:39:13Z"],
-    ["traffic-review", "5d999a36e69f0cd4a54356f032fda78223694fc9", "2026-06-30T14:42:43Z"]
-];
 
 const siteExtensions = new Set([".html", ".css", ".js"]);
 const ignoredDirectories = new Set([".git", "node_modules", "screenshots"]);
@@ -227,55 +184,10 @@ for (const file of htmlFiles) {
 }
 
 const indexHtml = htmlByPath.get("index.html") ?? "";
-const activityItems = [...indexHtml.matchAll(
-    /<li\b([^>]*\bdata-activity-item\b[^>]*)>([\s\S]*?)<\/li>/gi
-)].map((match) => ({
-    attributes: match[1],
-    body: match[2]
-}));
-const actualRecentActivity = activityItems.map(({ attributes, body }) => {
-    const tag = `<li ${attributes}>`;
-    const timeTag = body.match(/<time\b[^>]*>/i)?.[0] ?? "";
-
-    return [
-        getAttribute(tag, "data-repository"),
-        getAttribute(tag, "data-commit"),
-        getAttribute(timeTag, "datetime")
-    ];
-});
-
-assert(activityItems.length === 8, `Expected 8 recent public commits, found ${activityItems.length}.`);
-assert(
-    JSON.stringify(actualRecentActivity) === JSON.stringify(expectedRecentActivity),
-    "Recent public commits or their chronological order do not match the July 26, 2026 snapshot."
-);
-assert(
-    new Set(actualRecentActivity.map(([, commit]) => commit)).size === activityItems.length,
-    "Recent public commits must be unique."
-);
-assert(
-    /Updated July 26, 2026\./.test(indexHtml),
-    "Recent public activity snapshot date is missing or incorrect."
-);
-
-for (const { attributes, body } of activityItems) {
-    const tag = `<li ${attributes}>`;
-    const repository = getAttribute(tag, "data-repository") ?? "";
-    const commit = getAttribute(tag, "data-commit") ?? "";
-    const expectedCommitUrl = `https://github.com/ryeceps/${repository}/commit/${commit}`;
-    const shortSha = commit.slice(0, 7);
-
-    assert(expectedPublicRepositories.includes(repository), "Recent activity references a repository outside the public archive.");
-    assert(
-        body.includes(`href="${expectedCommitUrl}"`),
-        `Recent activity entry is missing its canonical commit URL.`
-    );
-    assert(
-        new RegExp(`<code\\b[^>]*>${shortSha}<\\/code>`, "i").test(body),
-        `Recent activity entry is missing its seven-character SHA.`
-    );
-    assert(!/\b(?:merge|bot|deploy|pages sync)\b/i.test(stripMarkup(body)), "Recent activity contains excluded low-signal commit text.");
-}
+const recentNames = [...indexHtml.matchAll(/data-recent-repository="([^"]+)"/g)].map((match) => match[1]);
+assert(JSON.stringify(recentNames) === JSON.stringify(expectedPublicRepositories.slice(0, 4)), "Recent repositories should match the four newest public pushes.");
+assert(indexHtml.indexOf('id="about"') > indexHtml.indexOf('<main id="main-content"') && indexHtml.indexOf('id="about"') < indexHtml.indexOf('class="container dialog-panel hero-panel"'), "About Me must be the first homepage section.");
+assert(indexHtml.includes(`${snapshot.repositories.length} owned repositories`), "Homepage public repository count is stale.");
 
 const projectsHtml = htmlByPath.get("projects.html") ?? "";
 const publicCards = [...projectsHtml.matchAll(
@@ -283,10 +195,10 @@ const publicCards = [...projectsHtml.matchAll(
 )];
 const publicNames = publicCards.map((match) => stripMarkup(match[1]));
 
-assert(publicNames.length === 33, `Expected 33 public archive cards, found ${publicNames.length}.`);
+assert(publicNames.length === snapshot.repositories.length, `Expected ${snapshot.repositories.length} public archive cards, found ${publicNames.length}.`);
 assert(
     JSON.stringify(publicNames) === JSON.stringify(expectedPublicRepositories),
-    "Public archive repository names or sort order do not match the July 2026 snapshot."
+    "Public archive repository names or sort order do not match the generated snapshot."
 );
 
 for (const excluded of excludedPublicRepositories) {
@@ -296,7 +208,9 @@ for (const excluded of excludedPublicRepositories) {
 for (const match of publicCards) {
     const card = match[0];
     const name = stripMarkup(match[1]);
+    const expected = snapshot.repositories.find((repo) => repo.name === name);
     assert(countMatches(card, /\bclass="language-label"/gi) === 1, `${name}: expected one primary-language label.`);
+    assert(card.includes(`data-category="${expected?.category}"`), `${name}: category does not match snapshot.`);
     assert(new RegExp(`href="https://github\\.com/ryeceps/${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "i").test(card), `${name}: missing GitHub link.`);
 
     const descriptionMatch = card.match(/<p class="project-description">([\s\S]*?)<\/p>/i);

@@ -945,13 +945,20 @@ button {
 
 .archive-controls {
     display: grid;
-    grid-template-columns: minmax(14rem, 1fr) auto;
+    grid-template-columns: minmax(14rem, 1fr) minmax(12rem, 0.65fr) auto;
     gap: 1rem;
     align-items: end;
     margin-bottom: 1.2rem;
     padding: 1rem;
     border: 1px solid rgba(221, 229, 255, 0.34);
     background: rgba(0, 2, 29, 0.34);
+}
+
+.repo-category {
+    color: var(--amber);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
 .field {
