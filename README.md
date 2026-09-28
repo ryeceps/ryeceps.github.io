@@ -2,12 +2,12 @@
 
 A responsive, PS1-era portfolio and blog showcasing work in agentic AI, production ML, and decision intelligence.
 
-Live site: [ryanbieber.github.io](https://ryanbieber.github.io)
+Live site: [ryeceps.github.io](https://ryeceps.github.io)
 
 ## Structure
 
 ```text
-ryanbieber.github.io/
+ryeceps.github.io/
 ├── index.html
 ├── resume.html
 ├── projects.html
@@ -45,7 +45,7 @@ The archive is a manual July 2026 snapshot representing 58 repositories:
 - 33 public repository cards.
 - One anonymous `PRIVATE VAULT // 25 REPOSITORIES` panel representing 25 private repositories.
 
-A public repository qualifies when it is owned by `ryanbieber`, non-empty, and not a fork. The profile repository and this website repository are excluded. Public cards are sorted by `pushed_at`, most recent first.
+A public repository qualifies when it is owned by `ryeceps`, non-empty, and not a fork. The profile repository and this website repository are excluded. Public cards are sorted by `pushed_at`, most recent first.
 
 Descriptions follow this order:
 
@@ -55,7 +55,7 @@ Descriptions follow this order:
 
 Each public card contains only its name, concise description, primary-language label, GitHub link, and an optional project-specific live-site link. Stars, forks, issue counts, and activity statistics are intentionally omitted.
 
-Private repository contents are never inspected. Qualifying private repositories must be owned by `ryanbieber`, non-empty, and not externally owned collaborations. The site exposes no private repository names, URLs, languages, dates, or per-category counts. It uses only four broad, metadata-level summaries:
+Private repository contents are never inspected. Qualifying private repositories must be owned by `ryeceps`, non-empty, and not externally owned collaborations. The site exposes no private repository names, URLs, languages, dates, or per-category counts. It uses only four broad, metadata-level summaries:
 
 - Applied ML and forecasting.
 - Automation and productivity tools.
@@ -75,7 +75,7 @@ Activity entries must:
 - Come from an owned, public, non-empty, non-fork repository.
 - Exclude the profile and website repositories.
 - Use commits from the repository's default branch.
-- Have GitHub's commit `author.login` set to `ryanbieber`.
+- Have GitHub's commit `author.login` set to `ryeceps`.
 - Exclude merge commits, bots, deployment triggers, Pages synchronization, and low-signal maintenance.
 - Be sorted by committed timestamp descending, with no more than three entries per repository.
 - Include the repository, first-line subject, absolute `<time datetime>`, seven-character display SHA, and canonical full-SHA commit URL.
@@ -157,6 +157,6 @@ A push to `main` starts the Pages build. Monitor the repository's Pages deployme
 ## Contact
 
 - [LinkedIn](https://linkedin.com/in/ryan-bieber)
-- [GitHub](https://github.com/ryanbieber)
+- [GitHub](https://github.com/ryeceps)
 
 Built with passion for AI and data science.
