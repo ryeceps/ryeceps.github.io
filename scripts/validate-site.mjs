@@ -49,7 +49,7 @@ const excludedPublicRepositories = [
     "Best-README-Template",
     "future-kubernetes-docker",
     "ryanbieber",
-    "ryanbieber.github.io"
+    "ryeceps.github.io"
 ];
 
 const expectedRecentActivity = [
@@ -94,7 +94,7 @@ const canonicalizePrivateExclusion = (value) => {
     const githubMatch = trimmed.match(
         /^(?:https?:\/\/)?(?:www\.)?github\.com\/([^/?#]+)\/([^/?#]+)\/?(?:[?#].*)?$/i
     );
-    let owner = "ryanbieber";
+    let owner = "ryeceps";
     let name = trimmed;
 
     if (githubMatch) {
@@ -110,14 +110,14 @@ const canonicalizePrivateExclusion = (value) => {
     name = name.replace(/\.git$/i, "");
 
     if (
-        owner.toLocaleLowerCase() !== "ryanbieber"
+        owner.toLocaleLowerCase() !== "ryeceps"
         || !/^[A-Za-z0-9._-]+$/.test(name)
     ) {
         return null;
     }
 
     return {
-        key: `ryanbieber/${name}`.toLocaleLowerCase(),
+        key: `ryeceps/${name}`.toLocaleLowerCase(),
         name
     };
 };
@@ -262,7 +262,7 @@ for (const { attributes, body } of activityItems) {
     const tag = `<li ${attributes}>`;
     const repository = getAttribute(tag, "data-repository") ?? "";
     const commit = getAttribute(tag, "data-commit") ?? "";
-    const expectedCommitUrl = `https://github.com/ryanbieber/${repository}/commit/${commit}`;
+    const expectedCommitUrl = `https://github.com/ryeceps/${repository}/commit/${commit}`;
     const shortSha = commit.slice(0, 7);
 
     assert(expectedPublicRepositories.includes(repository), "Recent activity references a repository outside the public archive.");
@@ -297,7 +297,7 @@ for (const match of publicCards) {
     const card = match[0];
     const name = stripMarkup(match[1]);
     assert(countMatches(card, /\bclass="language-label"/gi) === 1, `${name}: expected one primary-language label.`);
-    assert(new RegExp(`href="https://github\\.com/ryanbieber/${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "i").test(card), `${name}: missing GitHub link.`);
+    assert(new RegExp(`href="https://github\\.com/ryeceps/${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "i").test(card), `${name}: missing GitHub link.`);
 
     const descriptionMatch = card.match(/<p class="project-description">([\s\S]*?)<\/p>/i);
     const description = stripMarkup(descriptionMatch?.[1] ?? "");
@@ -409,7 +409,7 @@ if (exclusionsPath) {
     for (const { exclusion, index } of canonicalExclusions) {
         assert(
             exclusion !== null,
-            `Private repository exclusion entry ${index + 1} is not a valid ryanbieber repository name or GitHub URL.`
+            `Private repository exclusion entry ${index + 1} is not a valid ryeceps repository name or GitHub URL.`
         );
     }
 

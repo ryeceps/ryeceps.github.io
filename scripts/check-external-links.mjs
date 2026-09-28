@@ -33,7 +33,7 @@ const checkLink = async (url) => {
                 redirect: "follow",
                 signal: controller.signal,
                 headers: {
-                    "user-agent": "ryanbieber-portfolio-link-check/1.0"
+                    "user-agent": "ryeceps-portfolio-link-check/1.0"
                 }
             });
 
