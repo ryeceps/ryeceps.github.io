@@ -2,6 +2,14 @@
   "owner": "ryeceps",
   "repositories": [
     {
+      "name": "strength-coach",
+      "description": "A skill and web interface for turning strength goals, timelines, and equipment into practical coaching recommendations.",
+      "language": "HTML",
+      "category": "apps",
+      "pushedAt": "2026-09-28T16:02:26Z",
+      "liveUrl": "https://ryeceps.github.io/strength-coach/"
+    },
+    {
       "name": "azeroth-chronicle",
       "description": "the history of warcraft in an interactive format",
       "language": "TypeScript",
@@ -48,14 +56,6 @@
       "category": "games",
       "pushedAt": "2026-07-18T17:00:22Z",
       "liveUrl": "https://ryeceps.github.io/libraryofbabel/"
-    },
-    {
-      "name": "strength-coach",
-      "description": "A skill and web interface for turning strength goals, timelines, and equipment into practical coaching recommendations.",
-      "language": "JavaScript",
-      "category": "apps",
-      "pushedAt": "2026-07-10T03:09:56Z",
-      "liveUrl": "https://ryeceps.github.io/strength-coach/"
     },
     {
       "name": "registry-platform",
