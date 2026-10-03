@@ -15,7 +15,7 @@ const excludedPublicRepositories = [
     "future-kubernetes",
     "Best-README-Template",
     "future-kubernetes-docker",
-    "ryanbieber",
+    "ryeceps",
     "ryeceps.github.io"
 ];
 
