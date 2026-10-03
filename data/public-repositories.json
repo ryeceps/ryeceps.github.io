@@ -6,7 +6,23 @@
       "description": "the history of warcraft in an interactive format",
       "language": "JavaScript",
       "category": "games",
-      "pushedAt": "2026-10-02T13:25:34Z",
+      "pushedAt": "2026-10-03T13:38:05Z",
+      "liveUrl": null
+    },
+    {
+      "name": "ocarina-of-trump",
+      "description": "Ocarina of Time Trump parody assets and Fast64 tooling",
+      "language": "Python",
+      "category": "games",
+      "pushedAt": "2026-10-03T00:49:08Z",
+      "liveUrl": null
+    },
+    {
+      "name": "benchmark-real-ai",
+      "description": "Same task, different models and harnesses. Inspect the work.",
+      "language": "HTML",
+      "category": "ai",
+      "pushedAt": "2026-10-03T00:49:05Z",
       "liveUrl": null
     },
     {
@@ -16,22 +32,6 @@
       "category": "apps",
       "pushedAt": "2026-09-28T22:37:10Z",
       "liveUrl": "https://ryeceps.github.io/strength-coach/"
-    },
-    {
-      "name": "benchmark-real-ai",
-      "description": "Same task, different models and harnesses. Inspect the work.",
-      "language": "HTML",
-      "category": "ai",
-      "pushedAt": "2026-09-17T01:23:23Z",
-      "liveUrl": null
-    },
-    {
-      "name": "ocarina-of-trump",
-      "description": "Ocarina of Time Trump parody assets and Fast64 tooling",
-      "language": "Python",
-      "category": "games",
-      "pushedAt": "2026-09-12T01:12:17Z",
-      "liveUrl": null
     },
     {
       "name": "azeroth-soulforge",
