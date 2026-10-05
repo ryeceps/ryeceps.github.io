@@ -2,14 +2,6 @@
   "owner": "ryeceps",
   "repositories": [
     {
-      "name": "azeroth-chronicle",
-      "description": "the history of warcraft in an interactive format",
-      "language": "JavaScript",
-      "category": "games",
-      "pushedAt": "2026-10-04T14:46:38Z",
-      "liveUrl": null
-    },
-    {
       "name": "ocarina-of-trump",
       "description": "Ocarina of Time Trump parody assets and Fast64 tooling",
       "language": "Python",
